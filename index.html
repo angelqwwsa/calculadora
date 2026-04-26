@@ -1,81 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Calculadora Pro</title>
-
-  <!-- 📦 PWA -->
-  <link rel="manifest" href="manifest.json">
-
-  <style>
-    body {
-      margin: 0;
-      background: radial-gradient(circle, #111, #000);
-      color: #00ffcc;
-      font-family: monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    #app {
-      width: 320px;
-      padding: 15px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      box-shadow: 0 0 20px #00ffcc;
-      text-align: center;
-    }
-
-    input {
-      width: 100%;
-      height: 50px;
-      font-size: 24px;
-      text-align: right;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-    }
-
-    button {
-      margin: 3px;
-      padding: 10px;
-      border-radius: 10px;
-      background: black;
-      color: #00ffcc;
-      border: 1px solid #00ffcc;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #00ffcc;
-      color: black;
-    }
-
-    #buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-  </style>
-</head>
-
-<body>
-
-<div id="app">
-  <h2>🧮 Calculadora Pro</h2>
-
-  <input id="screen" disabled />
-  <div id="buttons"></div>
-</div>
-
 <script>
 window.onload = function () {
 
-  let screen = document.getElementById("screen");
+  const screen = document.getElementById("screen");
 
   function press(v) {
     screen.value += v;
@@ -92,6 +18,11 @@ window.onload = function () {
   function clearAll() {
     screen.value = "";
   }
+
+  // 🔥 IMPORTANTE para modo app
+  window.press = press;
+  window.calc = calc;
+  window.clearAll = clearAll;
 
   let buttons = [
     "7","8","9","/",
@@ -114,7 +45,6 @@ window.onload = function () {
 
   document.getElementById("buttons").innerHTML = html;
 
-  // teclado
   document.addEventListener("keydown", e => {
     if (!isNaN(e.key) || "+-*/().".includes(e.key)) press(e.key);
     if (e.key === "Enter") calc();
@@ -122,40 +52,3 @@ window.onload = function () {
 
 };
 </script>
-
-<!-- 🔌 SERVICE WORKER -->
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
-}
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const screen = document.getElementById("screen");
-
-  function press(v) {
-    screen.value += v;
-  }
-
-  function calc() {
-    try {
-      screen.value = eval(screen.value);
-    } catch {
-      screen.value = "Error";
-    }
-  }
-
-  function clearAll() {
-    screen.value = "";
-  }
-
-  // 👇 IMPORTANTÍSIMO: lo hace funcionar en modo app
-  window.press = press;
-  window.calc = calc;
-  window.clearAll = clearAll;
-
-});
-</script>
-</body>
-</html>
