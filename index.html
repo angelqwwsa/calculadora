@@ -129,6 +129,33 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
+  const screen = document.getElementById("screen");
+
+  function press(v) {
+    screen.value += v;
+  }
+
+  function calc() {
+    try {
+      screen.value = eval(screen.value);
+    } catch {
+      screen.value = "Error";
+    }
+  }
+
+  function clearAll() {
+    screen.value = "";
+  }
+
+  // 👇 IMPORTANTÍSIMO: lo hace funcionar en modo app
+  window.press = press;
+  window.calc = calc;
+  window.clearAll = clearAll;
+
+});
+</script>
 </body>
 </html>
