@@ -1,3 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Para Mamá 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    #app {
+      width: 340px;
+      text-align: center;
+    }
+
+    #screen {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.05);
+      min-height: 200px;
+      transition: 1s;
+    }
+
+    #img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
 <div id="app">
   <h1>🎂 Para Mamá 💖</h1>
 
@@ -12,44 +62,8 @@
 <audio id="music" loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
 </audio>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
-}
 
-#app {
-  width: 340px;
-  text-align: center;
-}
-
-#screen {
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 15px;
-  background: rgba(255,255,255,0.05);
-  min-height: 200px;
-  transition: 1s;
-}
-
-#img {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 10px;
-  display: none;
-}
-
-button {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-}
+<script>
 let i = 0;
 
 let scenes = [
@@ -80,7 +94,6 @@ function nextScene() {
     let text = document.getElementById("text");
     let img = document.getElementById("img");
 
-    // ✨ efecto cinematográfico
     text.style.opacity = 0;
 
     setTimeout(() => {
@@ -88,7 +101,6 @@ function nextScene() {
       text.style.opacity = 1;
     }, 500);
 
-    // 📸 fotos
     if (images[i]) {
       img.src = images[i];
       img.style.display = "block";
@@ -97,14 +109,12 @@ function nextScene() {
     }
 
     i++;
-
     setTimeout(nextScene, 2500);
   } else {
     finalScene();
   }
 }
 
-// 🎉 FINAL EXTREMO
 function finalScene() {
   document.body.style.transition = "2s";
   document.body.style.background = "#111";
@@ -117,7 +127,6 @@ function finalScene() {
   }
 }
 
-// 🎊 confeti extremo
 function confetti() {
   let c = document.createElement("div");
   c.innerText = "🎉";
@@ -137,3 +146,7 @@ function confetti() {
     }
   }, 20);
 }
+</script>
+
+</body>
+</html>
