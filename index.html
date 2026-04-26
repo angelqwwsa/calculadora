@@ -6,10 +6,9 @@
 
   <title>Calculadora Pro</title>
 
-  <!-- 📦 MANIFEST (IMPORTANTE PARA APP) -->
+  <!-- 📦 MANIFEST -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- 🎨 ESTILO -->
   <style>
     body {
       margin: 0;
@@ -39,7 +38,6 @@
       margin-bottom: 10px;
       border-radius: 10px;
       border: none;
-      padding: 5px;
     }
 
     button {
@@ -74,7 +72,6 @@
   <div id="buttons"></div>
 </div>
 
-<!-- ⚙️ JS -->
 <script>
 let screen = document.getElementById("screen");
 
@@ -122,6 +119,12 @@ document.addEventListener("keydown", e => {
 });
 </script>
 
-<!-- 📲 SERVICE WORKER -->
+<!-- 🔌 SERVICE WORKER -->
 <script>
-if ("service
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+</body>
+</html>
